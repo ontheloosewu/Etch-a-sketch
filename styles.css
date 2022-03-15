@@ -1,0 +1,11 @@
+#container {
+    display: flex;
+    flex-direction: column;
+    height: 750px;
+    width: 750px;
+}
+
+.row {
+    display: flex;
+    flex: 1;
+}
