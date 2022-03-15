@@ -3,9 +3,14 @@
     flex-direction: column;
     height: 750px;
     width: 750px;
+    border: 4px double red;
 }
 
 .row {
     display: flex;
     flex: 1;
+}
+
+.hovered {
+    background-color: black;
 }

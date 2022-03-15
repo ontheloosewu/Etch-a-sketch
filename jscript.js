@@ -16,3 +16,10 @@ function createGridOfDivs(){
 }
 
 createGridOfDivs();
+
+const squares = document.querySelectorAll('div.square');
+squares.forEach((square) => {
+    square.addEventListener('mouseover', () => {
+        square.classList.add('hovered');
+    });
+});
