@@ -1,6 +1,9 @@
 const mainContainer = document.getElementById('container');
+let currGridSize = 16;
+let colorMode = 'black';
 
 function createGridOfDivs(userNum){
+    currGridSize = userNum;
     for(let i = 0; i < userNum; i++){
         const rowContainer = document.createElement('div');
         rowContainer.classList.toggle('row');
@@ -9,6 +12,7 @@ function createGridOfDivs(userNum){
             aDiv.classList.toggle('square');
             aDiv.style.display = 'flex';
             aDiv.style.flex = '1';
+            aDiv.addEventListener('mouseover', changeColorMode);
             rowContainer.appendChild(aDiv);
         }
         mainContainer.appendChild(rowContainer);
@@ -22,17 +26,23 @@ function clearCurrentGrid(){
     }
 }
 
-function addListeners(){
-    const squares = document.querySelectorAll('div.square');
-    squares.forEach((square) => {
-        square.addEventListener('mouseover', () => {
-            square.classList.add('hovered');
-        });
-    });
+function randomBackgroundColor(){
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for(let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
 }
 
-createGridOfDivs(16);
-addListeners();
+function changeColorMode(){
+    if(colorMode === 'rgb'){
+        this.style.backgroundColor = randomBackgroundColor();
+    }
+    else {
+        this.style.backgroundColor = colorMode;
+    }
+}
 
 const resetBtn = document.getElementById('reset');
 resetBtn.addEventListener(('click'), () => {
@@ -48,5 +58,18 @@ resetBtn.addEventListener(('click'), () => {
     while (!isNaN(inputNum));
     clearCurrentGrid();
     createGridOfDivs(inputNum);
-    addListeners();
 });
+
+const blackBtn = document.getElementById('blackMode');
+blackBtn.addEventListener('click', () => colorMode = 'black');
+
+const rgbBtn = document.getElementById('rgbMode');
+rgbBtn.addEventListener('click', () => colorMode = 'rgb');
+
+const clrBtn = document.getElementById('clear');
+clrBtn.addEventListener('click', () => {
+    clearCurrentGrid();
+    createGridOfDivs(currGridSize);
+});
+
+createGridOfDivs(16);
