@@ -1,9 +1,16 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #container {
     display: flex;
     flex-direction: column;
     height: 750px;
     width: 750px;
     border: 4px double red;
+    margin-top: 20px;
 }
 
 .row {
